@@ -1,0 +1,31 @@
+<p>An exception was thrown. Details are below.</p>
+<h2>Exception</h2>
+<%= h @exception %>
+<br />
+<h2>Backtrace</h2>
+<pre>
+<% @backtrace.each do |value| %>
+<%= value %>
+<% end %>
+</pre>
+<br />
+<h2>Session Variables</h2>
+<% if @session_variables %>
+  <% @session_variables.each do |key, value| %>
+    <strong><%= key %></strong> => <%= value %><br />
+  <% end %>
+<% end %>
+<br />
+<h2>Params</h2>
+<% if @prams %>
+  <% @prams.each do |key, value| %>
+    <strong><%= key %></strong> => <%= value %><br />
+  <% end %>
+<% end %>
+<br />
+<h2>Environment</h2>
+<% if @env %>
+  <% @env.each do |key, value| %>
+    <strong><%= key %></strong> => <%= value %><br />
+  <% end %>
+<% end %>

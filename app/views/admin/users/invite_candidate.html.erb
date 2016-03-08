@@ -1,0 +1,7 @@
+<%= form_tag send_invitation_to_candidate_path, class: 'form-signin' do %>
+    <%= email_field 'email',nil, autofocus: true, class: "form-control", placeholder: "Email", required: true %><br/>
+    <%= text_field 'full_name',nil, autofocus: true, class: "form-control", placeholder: "Name", required: true %><br/>
+    <%= text_field 'phone_no',nil, autofocus: true, class: "form-control", placeholder: "Contact Number", required: true %><br/>
+    <%= select_tag 'technology_id',options_for_select(Technology.all.map {|t| [t.name, t.id]}), class: "form-control" %><br/>
+    <%= submit_tag 'Invite', class: "btn btn-lg btn-primary btn-block" %>
+<% end %>

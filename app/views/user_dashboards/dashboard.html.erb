@@ -1,0 +1,33 @@
+<div class="dashboard-container">
+  <div class="dashboard-wall">
+
+    <section class="instruction-main col-md-8">
+      <div class="text-center cand-name">Candidate Name : <span class="user_name"><%= current_user.full_name %></span></div>
+      <div class="text-center duration">Duration : <label class="test-time">20 mins</label></div>
+      <div class="text-center">Welcome to Technical Test for CueHunt.</div>
+      <br/>
+      <div class="text-center instruction-head">Instructions</div>
+      <div class="text-center carefully-text">( Please read the instructions carefully )</div>
+      <ul class="inst-list">
+        <li> Please do not press F5 or refresh the page during the test.</li>
+        <li> Total time for the test is 20 minutes.</li>
+        <li> Total number of questions are 20.</li>
+        <li> Do not try to close the browser.</li>
+        <li> Press next button for the next question to attempt.</li>
+        <li> As soon as time is over, test will be inactive and will ask you to submit the test.</li>
+        <li> You have to hit the Submit button for submitting the test.</li>
+      </ul>
+      <br/>
+      <div class="col-md-4 pull-left">
+        <div class="best-luck">All the best,</div>
+        <div class="cuehunt-thank-text">CueHunt Acquisition Team</div>
+      </div>
+      <div class="col-md-2 pull-right">
+        <% rand_string = (0...50).map { ('a'..'z').to_a[rand(26)] }.join %>
+        <%= link_to 'Start Test', user_set_path(authentication_token: rand_string),class: 'btn btn-lg btn-primary' %>
+      </div>
+    </section>
+
+
+  </div>
+</div>

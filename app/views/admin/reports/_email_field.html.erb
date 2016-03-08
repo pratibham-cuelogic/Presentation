@@ -1,0 +1,5 @@
+<% if @emails.present? %>
+    <%= select_tag 'email',options_for_select(@emails), class: "form-control"  %>
+<% else %>
+    <%= email_field 'email',nil, autofocus: true, class: "form-control", placeholder: "Email", required: true %>
+<% end %>

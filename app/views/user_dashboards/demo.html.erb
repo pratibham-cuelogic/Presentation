@@ -1,0 +1,65 @@
+<span id="s_timer"></span><br/>
+<%= form_tag "#",style: 'padding: 150px' do %>
+    <% @question_sets.each_with_index do |qs,index| %>
+        <div id="qs_<%= index %>" style="display: none" class="questions">
+          <p>
+            <%= qs.question.title %>
+          </p>
+          <p>
+            <% qs.question.answers.each do |ans| %>
+                <%= radio_button_tag "answers_#{index}", "#{qs.id}-#{qs.question.id}-#{ans.id}", checked: false %>
+                <%= ans.description.html_safe %><br/>
+            <% end %>
+          </p>
+          <%= button_tag 'Next',onclick: "next_question(#{index + 1}); return false" %>
+        </div>
+    <% end %>
+<% end %>
+
+<script>
+
+    $(function(){
+        $("#qs_0").show();
+        $('#s_timer').countdowntimer({
+            minutes :2,
+            //seconds :5,
+            size : "lg",
+            timeUp : timeisUp
+        });
+        function timeisUp() {
+            $.ajax({
+                url: '/timeis-up',
+                method: 'POST',
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+                },
+                success: function(data) {
+                    alert('Your Times Up Thank You!')
+                    window.location.replace('/ThankYou')
+                }
+            })
+
+        }
+    });
+
+
+    function next_question(index){
+        $(".questions").hide();
+        $("#qs_"+index).show();
+        var rad_index = index - 1
+        var set = document.getElementsByName("answers_"+rad_index)[0].value
+        $.ajax({
+            url: '/submit-answer',
+            method: 'POST',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+            },
+            data: {set: set, question_number: index}
+        })
+
+    }
+
+</script>
+<%# content_for :js do %>
+<%#= javascript_include_tag 'custom_files/count_down' %>
+<%# end%>

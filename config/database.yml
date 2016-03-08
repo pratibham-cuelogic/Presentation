@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 50
+  host: localhost
+  username: postgres
+  password: postgres
+development:
+  <<: *default
+  database: CueHunt_development
+production:
+  <<: *default
+  database: CueHunt_production
+  username: postgres
+  password: <%= ENV['CUEHUNT_DATABASE_PASSWORD'] %>

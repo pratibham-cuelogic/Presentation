@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <div class="account-wall">
+        <header>
+          <h1 class="text-center login-title ion-log-in">Forgot your password?</h1>
+        </header>
+        <h1 class="text-center"> <img src="/assets/logo.png" width="60%"> </h1>
+
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post,class: 'form-signin' }) do |f| %>
+           <%= devise_error_messages! %><br/>
+           <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email", required: true %><br/>
+           <%= f.submit 'Send Password Instructions', class: "btn btn-lg btn-primary btn-block" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

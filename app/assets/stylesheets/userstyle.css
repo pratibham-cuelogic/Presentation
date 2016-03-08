@@ -1,0 +1,169 @@
+body{
+    background: #1e88e5;
+    font-family: 'Ubuntu', sans-serif;
+}
+header{
+	 background: #fff;
+    padding: 15px 30px;
+    -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+}
+.instruction-wall header{
+	background: #fff;
+}
+.profile-img{
+    margin: 0px;
+    display: block;
+    border-radius: 0;
+    background: url('/assets/logo.png');
+    width: 164px;
+    height: 51px;
+    background-size: 95%;
+    background-repeat: no-repeat;
+    border: none;
+}
+.instruction-main{
+	padding: 1% 6%;
+    background: #fff;
+    margin: 1% auto;
+    min-height: 510px;
+    float: none;
+}
+.instruction-main div{
+	margin:2% 0;
+}
+.instruction-set{
+	padding: 2% 4%;
+    background: #fff;
+    margin: 2% 2%;
+    max-height: 488px;
+}
+.instruction-head{
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.cand-name, .test-time, .best-luck{
+	font-weight: bold;	
+}
+.best-luck{
+	font-size: 14px;
+}
+.carefully-text{
+	font-size: 12px;
+    font-weight: 600;
+}
+.instruction-set div{
+	margin:2% 0;
+}
+.inst-list li{
+	margin: 15px 0;
+    list-style-type: disc;
+    font-size: 14px;
+}
+.cuehunt-thank-text{
+	color: #1e88e5;
+}
+.question-label{
+	margin: 4%;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 25px;
+}
+.instruction-set .radio{
+	margin: 4% 2%;
+	font-size: 20px;
+}
+.user-help-set{
+	padding: 2% 2%;
+    background: #fff;
+    margin: 2% 2%;	
+    min-height: 446px;
+    text-align: center;
+}
+.question-status{
+	padding: 10% 0;
+}
+.question-status h1{
+	padding:10% 0;
+	margin: auto;
+	float: none;
+	font-weight: bold;
+	font-size: 20px;
+}
+.completed-question{
+	background: #1e88e5;
+	color: #fff;
+}
+.incompleted-question{
+	background: #FFB551;
+}
+.que-no{
+	font-weight: bold;
+	width: 32px;
+    height: 32px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    padding: 7px;
+    border: 1px solid;
+    border-radius: 5px;
+    margin: 10px;
+}
+.textDiv_Minutes{
+	position: absolute !important;
+    left: 21%!important;
+    top: 15%!important;
+    width: auto!important;
+    text-align: center;
+}
+.textDiv_Minutes h4, .textDiv_Seconds h4{
+	font-size: 15px !important;
+    line-height: 30px !important;
+}
+.textDiv_Seconds{
+	left: 50% !important;
+    top: 15% !important;
+    position: absolute;
+    width: auto;
+    text-align: center;
+}
+.thankyou-main{
+	min-height: 510px;
+    background: #fff;
+    margin: 15px auto;
+    float: none;
+}
+.thankyou-note{
+	margin: auto;
+    float: none;
+    height: 510px;
+    padding: 0%;
+    vertical-align: middle;
+    text-align: center;
+    padding: 15% 0;
+    font-size: 24px;
+    line-height: 50px;
+}
+.thankyou-note p{
+	margin: 10px;
+}
+
+footer{
+    padding: 15px;
+    background: #fff;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #1e88e5;
+    font-size: 13px;
+    margin-top: 21px;
+    position: absolute;
+    bottom:-9px;
+}
+footer .copyright{
+     text-decoration: none;
+    cursor: default;
+}

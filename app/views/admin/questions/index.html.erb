@@ -1,0 +1,38 @@
+<section class="que-n-ans activate">
+  <h2>Question Set</h2>
+
+  <div class="question-set">
+    <div class="col-md-3 tech-drop-box">
+      <%= select_tag 'technology_id',options_for_select(Technology.all.map {|t| [t.name, t.id]}.unshift(["All Technologies", '']), selected: params[:tech_id]), :onchange => 'filter_questions(this)',  class: "form-control" %>
+    </div>
+    <div class="question-view" >
+      <div class="question-tabulate-view">
+        <table class="table table-striped question-scroll">
+          <thead>
+          <tr>
+            <th style="width: 10%">Sr.No.</th>
+            <th style="width: 90%">Question</th>
+          </tr>
+          </thead>
+          <tbody>
+           <% @questions.each do |que| %>
+            <tr>
+              <td> <%= que.id %> </td>
+              <td> <%= que.title %> </td>
+            </tr>
+          <% end %>
+          <%= will_paginate @questions %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<script type="text/javascript">
+    function filter_questions(e){
+      window.location = "/admin/questions?tech_id="+ e.value
+    }
+</script>

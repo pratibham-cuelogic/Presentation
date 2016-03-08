@@ -1,0 +1,72 @@
+<section class="reports activate">
+  <h2>Report / Analytics </h2>
+  <div class="report-section">
+    <div class="user-report col-md-9 pull-left">
+
+      <div class="panel-group" id="accordion">
+
+        <% if @candidate_reports.size > 0 %>
+          <% @candidate_reports.each_with_index do |report,index| %>
+            <div class="panel panel-default">
+              <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne_<%=report.id%>">
+                <h4 class="panel-title">
+                  <a class="accordion-toggle">
+                    <%= report.user.full_name %>
+                  </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+                </h4>
+              </div>
+              <div id="collapseOne_<%=report.id%>" class="panel-collapse collapse <%= index ==0 ? 'in' : '' %>">
+                <div class="panel-body">
+                  <div class="email report-panel-value">
+                    <label>Candidate Email:</label>
+                    <label><%= report.user.email %></label>
+                  </div>
+                  <div class="full_name report-panel-value">
+                    <label>Full Name:</label>
+                    <label><%= report.user.full_name %></label>
+                  </div>
+                  <div class="duration report-panel-value">
+                    <label>Duration:</label>
+                    <label>20 mins</label>
+                  </div>
+                  <div class="appeared report-panel-value">
+                    <label>Appeared On :</label>
+                    <label><%= report.start_time.nil? ? "-" : report.start_time %></label>
+                  </div>
+                  <div class="question report-panel-value">
+                    <label>Questions:</label>
+                    <label>10</label>
+                  </div>
+                  <div class="score report-panel-value">
+                    <label>Candidate Score :</label>
+                    <label><%= report.score %> Out of 10</label>
+                  </div>
+                  <div class="category report-panel-value">
+                    <label>Category :</label>
+                    <label>Fail</label>
+                  </div>
+                  <div class="category report-panel-value">
+                    <label>Test Status :</label>
+                    <label>Complete</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          No Reports Found
+        <% end %>
+      </div>
+    </div>
+    <div class="report-filter col-md-3">
+
+      <%= form_tag candidate_report_path, method: :get, class: 'form-signin' do %>
+        <div class="tech-drop-box technology-filter filter-block">
+          <label>Technology :</label>
+          <%= select_tag 'technology_id',options_for_select(Technology.all.map {|t| [t.name, t.id]}, selected: params[:technology_id]), include_blank: true, class: "form-control" %>
+        </div>
+          <button class="btn btn-lg btn-primary btn-block existing-candidate filter-block-search" type="submit">Filter</button>
+      <% end %>
+    </div>
+  </div>
+</section>

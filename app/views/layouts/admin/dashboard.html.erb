@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= params[:action] %></title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Cue Online Test">
+    <meta name="keywords" content="Cuehunt,question,answer,onlinetest">
+    <link rel="icon" href="image/cuehunt.png" type="image" sizes="16x16"> <!-- REMAINING -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="/assets/reset.css">-->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed|Ubuntu' rel='stylesheet' type='text/css'>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="/assets/style.css">-->
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="/assets/jq_chart/js/jquery.mousewheel.js" type="text/javascript"></script>
+    <script src="/assets/jq_chart/js/jquery.jqChart.min.js" type="text/javascript"></script>
+    <script src="/assets/jq_chart/js/jquery.jqRangeSlider.min.js" type="text/javascript"></script>
+    <script src="/assets/common.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <div class="dashboard-wall">
+        <header>
+          <h1 class="text-left profile-img"></h1>
+          <!--<a href="#" id="sign_out_btn" class="text-right pull-right logout-img"></a>-->
+
+          <!--<h1 class="text-left"><img class="profile-img" src="#" alt=""></h1>&lt;!&ndash;-->
+           <!--<a href="#" id="sign_out_btn" class="text-right pull-right"><img class="profile-img" src="#" alt="Signout"></a> &ndash;&gt;-->
+          <%= link_to "", destroy_user_session_path, method: 'delete',  class: "text-right pull-right logout-img" %>
+
+        </header>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <ul class="nav navbar-nav dashboard-menu">
+              <li class="<%= params[:controller] == 'admin/dashboards' ? 'active' : '' %>" id="content_body">
+                <%= link_to 'Dashboard', admin_dashboard_path  %>
+              </li>
+              <li class="<%= params[:controller] == 'admin/reports' ? 'active' : '' %>" id="report_block">
+                <%= link_to 'Reports', candidate_report_path  %>
+              </li>
+              <li class="<%= params[:controller] == 'admin/questions' ? 'active' : '' %>" id="question_block">
+                <%= link_to 'Question Set', questions_path %>
+              </li>
+              <li id="content_body" class="<%= params[:controller] == 'admin/users' ? 'active' : '' %>"> <%= link_to 'Candidates', candidates_path  %> </li>
+            </ul>
+          </div>
+        </nav>
+        <div id="content_body">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <a href="#" class="copyright">Copyright © Cue Hunt Team</a>
+    </footer>
+    <!-- END CONTENT -->
+  </body>
+</html>

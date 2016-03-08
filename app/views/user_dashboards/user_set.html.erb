@@ -1,0 +1,93 @@
+<div class="dashboard-container">
+  <div class="dashboard-wall">
+<%# raise  @question_sets.inspect %>
+    <section class="instruction-set col-md-8 pull-left">
+      <%= form_tag "#" do %>
+          <% @question_sets.each_with_index do |qs,index| %>
+              <div id="qs_<%= index %>" style="display: none" class="questions">
+                <div class="form-group">
+                  <label class="question-label">
+                  <%= qs.question.title %>
+                  </label>
+                </div>
+                <% qs.question.answers.each do |ans| %>
+                  <div class="radio">
+                    <label>
+                      <%= radio_button_tag "answers_#{index}", "#{qs.id}-#{qs.question.id}-#{ans.id}", false %>
+                      <%= ans.description.html_safe %><br/>
+                    </label>
+                  </div>
+                <% end %>
+                <%= button_tag 'Next',onclick: "next_question(#{index + 1}); return false",class: 'btn btn-lg btn-primary' %>
+              </div>
+          <% end %>
+      <% end %>
+    </section>
+
+    <section class="user-help-set col-md-3">
+      <span id="s_timer"></span>
+      <div class="question-status">
+        <h1 class="text-center">Question Status</h1>
+        <ul>
+          <% for i in 1..10 %>
+              <li class="que-no" id="answer_<%= i %>"><%= i %></li>
+          <% end %>
+          <!--<li class="completed-question que-no">1</li>-->
+          <!--<li class="incompleted-question que-no">1</li>-->
+          <!--<li class="que-no">1</li>-->
+        </ul>
+      </div>
+    </section>
+
+
+  </div>
+</div>
+
+<script>
+
+
+
+  $(function(){
+
+    $("#qs_0").show();
+    $('#s_timer').countdowntimer({
+      minutes :25,
+      //seconds :5,
+      size : "lg",
+      timeUp : timeisUp
+    });
+    function timeisUp() {
+      $.ajax({
+        url: '/timeis-up',
+        method: 'POST',
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+        },
+        success: function(data) {
+          alert('Your Times Up Thank You!')
+          window.location.replace('/ThankYou')
+        }
+      })
+
+    }
+  });
+
+
+  function next_question(index){
+    $(".questions").hide();
+    $("#qs_"+index).show();
+    var rad_index = index - 1
+    var set = document.getElementsByName("answers_"+rad_index)[0].value
+    $("#answer_"+index).addClass('completed-question')
+    $.ajax({
+      url: '/submit-answer',
+      method: 'POST',
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      data: {set: set, question_number: index}
+    })
+
+  }
+
+</script>
